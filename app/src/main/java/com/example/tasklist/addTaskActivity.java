@@ -8,13 +8,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class addTaskActivity extends AppCompatActivity {
-
+    String ogTaskTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,30 +36,59 @@ public class addTaskActivity extends AppCompatActivity {
         Button btnCancel = findViewById(R.id.btnCancelTask);
         Button btnSave = findViewById(R.id.btnSaveTask);
 
+
+        Task receivedTask;
+        Intent recInt = getIntent();
+        if(recInt != null){
+             receivedTask = recInt.getParcelableExtra("selectedTask");
+             ogTaskTitle = recInt.getStringExtra("ogTaskTitle");
+            if(receivedTask != null){
+                taskTitle.setText(receivedTask.getTaskTitle());
+                taskDuration.setText(receivedTask.getTaskDuration());
+                taskDescription.setText(receivedTask.getTaskDescription());
+                taskDueDate.setText(receivedTask.getTaskDueDate());
+                taskCategory.setText(receivedTask.getTaskCategory());
+            }
+
+        }
+
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cancelIntent = new Intent();
-                setResult(RESULT_CANCELED,cancelIntent);
+                setResult(RESULT_CANCELED);
                 finish();
             }
         });
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String strTaskTitle = taskTitle.getText().toString();
                 String intTaskDuration = taskDuration.getText().toString();
                 String strTaskDescription = taskDescription.getText().toString();
                 String strTaskDueDate = taskDueDate.getText().toString();
                 String strTaskCategory = taskCategory.getText().toString();
 
-                Task newTask = new Task(strTaskTitle,intTaskDuration,strTaskDescription,strTaskDueDate,strTaskCategory);
-                Intent addIntent = new Intent();
-                addIntent.putExtra("newTask",newTask);
-                setResult(RESULT_OK,addIntent);
-                finish();
+                Task task = new Task(strTaskTitle,intTaskDuration,strTaskDescription,strTaskDueDate,strTaskCategory);
+                if(recInt != null ){
+                    Intent editIntent = new Intent();
+                    editIntent.putExtra("editedTask",task);
+                    editIntent.putExtra("ogTaskTitle", ogTaskTitle);
+                    setResult(RESULT_OK,editIntent);
+                    finish();
+                }else{
+
+                    Intent addIntent = new Intent();
+                    addIntent.putExtra("newTask",task);
+                    setResult(RESULT_OK,addIntent);
+                    finish();
+                }
             }
         });
 
+
+
     }
+
+
 }

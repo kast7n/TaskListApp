@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -68,7 +69,17 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        lvTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            Task currTask = taskList.get(i);
+            Intent intentEdit = new Intent(current, addTaskActivity.class);
+            intentEdit.putExtra("selectedTask",currTask);
+            intentEdit.putExtra("ogTaskTitle",currTask.getTaskTitle());
+            startActivityForResult(intentEdit,2);
 
+            }
+        });
     }
 
     @Override
@@ -77,7 +88,17 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == 1){
             if(resultCode == RESULT_OK){
                 Task receivedTask = data.getParcelableExtra("newTask");
-                //taskList.add(receivedTask);
+                taskList.add(receivedTask);
+                taskTitleList.add(receivedTask.getTaskTitle());
+                adapter.notifyDataSetChanged();
+            }
+        }
+        if(requestCode == 2){
+            if(resultCode == RESULT_OK){
+                Task receivedTask = data.getParcelableExtra("newTask");
+                taskList.remove(receivedTask);
+                taskList.add(receivedTask);
+                taskList.remove(receivedTask.getTaskTitle());
                 taskTitleList.add(receivedTask.getTaskTitle());
                 adapter.notifyDataSetChanged();
             }
