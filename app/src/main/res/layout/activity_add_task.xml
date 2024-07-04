@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".addTaskActivity">
+
+    <TextView
+        android:id="@+id/txtTaskAddTitle"
+        android:layout_width="448dp"
+        android:layout_height="58dp"
+        android:background="#D590DA9B"
+        android:gravity="center"
+        android:text="Add Task"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtTaskTitle"
+        android:layout_width="109dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
+        android:text="Title"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTaskAddTitle" />
+
+    <EditText
+        android:id="@+id/etTaskTitle"
+        android:layout_width="267dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="49dp"
+        android:ems="10"
+        android:hint="Task Title"
+        android:inputType="text"
+        app:layout_constraintStart_toEndOf="@+id/txtTaskTitle"
+        app:layout_constraintTop_toBottomOf="@+id/txtTaskAddTitle" />
+
+    <EditText
+        android:id="@+id/etTaskDuration"
+        android:layout_width="267dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="Task Duration"
+        android:inputType="text"
+        app:layout_constraintStart_toEndOf="@+id/txtTaskDuration"
+        app:layout_constraintTop_toBottomOf="@+id/etTaskTitle" />
+
+    <TextView
+        android:id="@+id/txtTaskDuration"
+        android:layout_width="109dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Duration"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTaskTitle" />
+
+    <EditText
+        android:id="@+id/etTaskDescription"
+        android:layout_width="267dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Task Description"
+        android:inputType="text"
+        app:layout_constraintStart_toEndOf="@+id/txtTaskDescription"
+        app:layout_constraintTop_toBottomOf="@+id/etTaskDuration" />
+
+    <TextView
+        android:id="@+id/txtTaskDescription"
+        android:layout_width="109dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Description"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTaskDuration" />
+
+    <TextView
+        android:id="@+id/txtTaskDueDate"
+        android:layout_width="109dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Due Date"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTaskDescription" />
+
+    <EditText
+        android:id="@+id/etDueDate"
+        android:layout_width="267dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Task Due Date"
+        android:inputType="text"
+        app:layout_constraintStart_toEndOf="@+id/txtTaskDueDate"
+        app:layout_constraintTop_toBottomOf="@+id/etTaskDescription" />
+
+    <TextView
+        android:id="@+id/txtTaskCategory"
+        android:layout_width="109dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Category"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTaskDueDate" />
+
+    <EditText
+        android:id="@+id/etTaskCategory"
+        android:layout_width="267dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Task Category"
+        android:inputType="text"
+        app:layout_constraintStart_toEndOf="@+id/txtTaskCategory"
+        app:layout_constraintTop_toBottomOf="@+id/etDueDate" />
+
+    <Button
+        android:id="@+id/btnSaveTask"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="61dp"
+        android:background="#99C16A"
+        android:text="Save Task"
+
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:icon="@android:drawable/ic_menu_save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnCancelTask"
+        app:layout_constraintTop_toBottomOf="@+id/etTaskCategory" />
+
+    <Button
+        android:id="@+id/btnCancelTask"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginEnd="61dp"
+        android:background="#C1746A"
+        android:text="Cancel Task"
+
+        android:textStyle="bold"
+        app:icon="@android:drawable/ic_menu_save"
+        app:layout_constraintEnd_toStartOf="@+id/btnSaveTask"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTaskCategory" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
